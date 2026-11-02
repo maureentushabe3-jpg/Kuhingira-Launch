@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diana’s Okuhingira Launch</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #fcf9f5;
+            --envelope-color: #f4eee3;
+            --border-color: #d6ccc2;
+            --text-color: #5c5346;
+            --accent-gold: #c5b358;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 420px;
+            min-height: 100vh;
+            background-color: var(--bg-color);
+            position: relative;
+            box-shadow: 0 0 20px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Envelope Overlay */
+        #envelope-screen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #f7f3ec 0%, #ede5d8 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+            transition: opacity 0.8s ease, transform 0.8s ease;
+            cursor: pointer;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .envelope-card {
+            width: 90%;
+            max-width: 360px;
+            height: 500px;
+            background: #fff;
+            border: 1px solid var(--border-color);
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+            border-radius: 4px;
+        }
+
+        .bow {
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+
+        .envelope-card h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 28px;
+            font-weight: 400;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .tap-open {
+            margin-top: 30px;
+            font-size: 12px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            border-bottom: 1px solid var(--text-color);
+            padding-bottom: 4px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.6; }
+            50% { opacity: 1; }
+            100% { opacity: 0.6; }
+        }
+
+        /* Invitation Main Content */
+        .content-screen {
+            opacity: 0;
+            transition: opacity 1s ease;
+            width: 100%;
+            padding: 40px 24px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .show-content {
+            opacity: 1;
+        }
+
+        .header-tag {
+            font-size: 11px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            color: #8c7e6d;
+        }
+
+        h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 36px;
+            font-weight: 400;
+            margin-bottom: 15px;
+            color: #4a4136;
+        }
+
+        .subtext {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        .divider {
+            width: 50px;
+            height: 1px;
+            background-color: var(--border-color);
+            margin: 20px auto;
+        }
+
+        .details-box {
+            margin: 20px 0;
+            line-height: 1.8;
+        }
+
+        .details-box p {
+            font-size: 14px;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .details-box .highlight {
+            font-weight: 500;
+            font-size: 16px;
+            color: #4a4136;
+        }
+
+        /* Countdown Section */
+        .countdown-container {
+            margin-top: 30px;
+            width: 100%;
+            background: rgba(244, 238, 227, 0.5);
+            padding: 20px;
+            border-radius: 6px;
+        }
+
+        .countdown-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 20px;
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+
+        .countdown-timers {
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+        }
+
+        .time-block span {
+            display: block;
+        }
+
+        .time-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 24px;
+            font-weight: 600;
+            color: #4a4136;
+        }
+
+        .time-label {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #8c7e6d;
+            margin-top: 4px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Envelope Animation Screen -->
+        <div id="envelope-screen" onclick="openInvitation()">
+            <div class="envelope-card">
+                <div class="bow">🎀</div>
+                <div class="header-tag">SAVE THE DATE</div>
+                <h2>Diana’s Okuhingira Launch</h2>
+                <div class="tap-open">Tap to Open</div>
+            </div>
+        </div>
+
+        <!-- Main Invitation Content -->
+        <div id="main-content" class="content-screen">
+            <div class="header-tag">SAVE THE DATE</div>
+            <h1>Diana’s Okuhingira Launch</h1>
+            <div class="subtext">We cordially invite you to join us!</div>
+            
+            <div class="divider"></div>
+
+            <div class="details-box">
+                <p class="highlight">15 November 2026</p>
+                <p>3:00 PM</p>
+                <div class="divider" style="width: 30px;"></div>
+                <p class="highlight">Baguma NP Family Restaurant</p>
+                <p>Nakasero Lane</p>
+            </div>
+
+            <div class="countdown-container">
+                <div class="countdown-title">To the big day</div>
+                <div class="countdown-timers">
+                    <div class="time-block">
+                        <span id="days" class="time-number">00</span>
+                        <span class="time-label">Days</span>
+                    </div>
+                    <div class="time-block">
+                        <span id="hours" class="time-number">00</span>
+                        <span class="time-label">Hours</span>
+                    </div>
+                    <div class="time-block">
+                        <span id="minutes" class="time-number">00</span>
+                        <span class="time-label">Mins</span>
+                    </div>
+                    <div class="time-block">
+                        <span id="seconds" class="time-number">00</span>
+                        <span class="time-label">Secs</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openInvitation() {
+            const envelope = document.getElementById('envelope-screen');
+            const content = document.getElementById('main-content');
+            
+            envelope.style.opacity = '0';
+            envelope.style.transform = 'scale(1.05)';
+            setTimeout(() => {
+                envelope.style.display = 'none';
+                content.classList.add('show-content');
+            }, 600);
+        }
+
+        // Countdown Timer Logic targeting Nov 15, 2026, 15:00:00
+        const eventDate = new Date("November 15, 2026 15:00:00").getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = eventDate - now;
+
+            if (distance < 0) {
+                document.querySelector('.countdown-container').innerHTML = "<p style='font-family: Cormorant Garamond, serif; font-size: 18px;'>The big day is here!</p>";
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = String(days).padStart(2, '0');
+            document.getElementById("hours").innerText = String(hours).padStart(2, '0');
+            document.getElementById("minutes").innerText = String(minutes).padStart(2, '0');
+            document.getElementById("seconds").innerText = String(seconds).padStart(2, '0');
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+    </script>
+</body>
+</html>
